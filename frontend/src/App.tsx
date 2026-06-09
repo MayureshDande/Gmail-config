@@ -164,13 +164,6 @@ function AttachmentCard({ att, copiedAttachmentId, copyToClipboard }: Attachment
 
   const isImage = att.mime_type.startsWith('image/');
 
-  // Auto-select image tab when it's an image attachment
-  const defaultTab: 'image' | 'structured' | 'text' | 'json' = isImage ? 'image' : 'structured';
-  const [initDone, setInitDone] = useState(false);
-  if (!initDone) {
-    // This runs only once synchronously on first render
-  }
-
   let parsedJson: any = null;
   let isJson = false;
   
@@ -451,7 +444,7 @@ interface EmailBodyCardProps {
   subject: string;
 }
 
-function EmailBodyCard({ body, subject }: EmailBodyCardProps) {
+function EmailBodyCard({ body }: EmailBodyCardProps) {
   const [activeSubTab, setActiveSubTab] = useState<'structured' | 'text' | 'json'>('text');
   
   let parsedJson: any = null;
