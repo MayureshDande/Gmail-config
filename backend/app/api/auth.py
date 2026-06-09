@@ -19,7 +19,8 @@ logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/auth/google", tags=["Authentication"])
 
 SCOPES = ['https://www.googleapis.com/auth/gmail.modify']
-REDIRECT_URI = "http://localhost:8000/api/v1/auth/google/callback"
+BACKEND_URL = os.getenv("BACKEND_URL", "http://localhost:8000").rstrip("/")
+REDIRECT_URI = f"{BACKEND_URL}/api/v1/auth/google/callback"
 
 # In production, VITE frontend home page
 FRONTEND_HOME = os.getenv("FRONTEND_URL", "http://localhost:5173")
