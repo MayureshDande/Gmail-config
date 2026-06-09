@@ -175,13 +175,16 @@ def callback(request: Request, response: Response, db: Session = Depends(get_db)
         clear_user_data(email, db)
         
         # 4. Set session cookie
+        mode = os.getenv("APP_MODE", "mock").lower()
+        is_prod = mode == "production"
+        
         redirect_res = RedirectResponse(FRONTEND_HOME)
         redirect_res.set_cookie(
             key="active_user_email",
             value=email,
             httponly=True,
-            samesite="lax",
-            secure=False,
+            samesite="none" if is_prod else "lax",
+            secure=is_prod,
             max_age=30 * 24 * 60 * 60
         )
         
@@ -231,12 +234,13 @@ def get_auth_status(
     if mode == "mock":
         email = active_user_email or "mock-user@gmail.com"
         if not active_user_email:
+            is_prod = mode == "production"
             response.set_cookie(
                 key="active_user_email",
                 value=email,
                 httponly=True,
-                samesite="lax",
-                secure=False,
+                samesite="none" if is_prod else "lax",
+                secure=is_prod,
                 max_age=30 * 24 * 60 * 60
             )
         return {
