@@ -1,0 +1,14 @@
+{
+  "name": "email-processing-dashboard-workspace",
+  "version": "1.0.0",
+  "description": "Monorepo for the Email Processing Dashboard and Parser Service",
+  "scripts": {
+    "dev:backend": "cd backend && uvicorn app.main:app --reload",
+    "dev:frontend": "cd frontend && npm run dev",
+    "install:backend": "pip install -r backend/requirements.txt",
+    "install:frontend": "cd frontend && npm install"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

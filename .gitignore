@@ -1,0 +1,25 @@
+# Frontend dependencies
+frontend/node_modules/
+frontend/dist/
+frontend/.eslintcache
+
+# Backend dependencies & caches
+backend/__pycache__/
+backend/.venv/
+backend/venv/
+backend/env/
+*.pyc
+
+# Local database and credentials
+backend/emails.db
+backend/token.json
+backend/credentials.json
+
+# Environment variables
+.env
+backend/.env
+frontend/.env
+
+# OS generated files
+.DS_Store
+Thumbs.db
